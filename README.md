@@ -35,6 +35,7 @@ Cuando lo ejecute, el programa debe separar memoria para un arreglo (vector) y r
 accediendo consecutivamente a cada entrada (por ejemplo, escribiendo un valor inicial a cada posición). El programa deberá hacer esto indefinidamente o, 
 por lo menos, por una cierta cantidad de tiempo especificada también por línea de comandos.
     > Para compilar el programa ```memory-user.c```, ejecutar el comando ```gcc memory-user.c -o memory-user.out -Wall -lm``` en la ubicación el archivo C.
+    >
     > Este programa toma argumentos por línea de comandos, el primero es el número de megabytes de memoria que se usará; y el segundo la cantidad de tiempo que el programa accederá y recorrerá el arreglo, este último argumento no es obligatorio, en caso de no ser ingresado, el programa accederá y recorrerá el arreglo indefinidamente.
     > Ejemplos de ejecución del programa:
     >   ```./memory-user.out 5```
