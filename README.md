@@ -39,9 +39,9 @@ por lo menos, por una cierta cantidad de tiempo especificada también por línea
     > Este programa toma argumentos por línea de comandos, el primero es el número de megabytes de memoria que se usará; y el segundo la cantidad de tiempo que el programa accederá y recorrerá el arreglo, este último argumento no es obligatorio, en caso de no ser ingresado, el programa accederá y recorrerá el arreglo indefinidamente.
     > Ejemplos de ejecución del programa:
     >
-    >            ```./memory-user.out 5```
+    >           ```./memory-user.out 5```
     >
-    >            ```./memory-user.out 4 1```
+    >           ```./memory-user.out 4 1```
 
 4. Ahora, mientras corra su programa ```memory-user.c```, ejecute la herramienta ```free``` (en una terminal diferente, 
 pero en la misma máquina). ¿Cómo cambia el uso total de memoria cuando su programa está corriendo?,
