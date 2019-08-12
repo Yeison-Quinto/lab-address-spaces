@@ -53,6 +53,7 @@ Intente esto para diferentes cantidades de uso de memoria. ¿Qué pasa cuando us
 5. Ahora veremos una herramienta más conocida como ```pmap```. Invierta algo de tiempo para leer el manual de ```pmap``` 
 en detalle. ¿Cuál es la diferencia de ```pmap``` con ```free```?
     > El comando ```pmap``` informa el mapa de memoria de un proceso o procesos.
+    La diferencia entre ```pmap``` y ```free``` es que ```pmap``` muestra el mapeo de un **proceso** (o varios procesos) en la memoria (indicando direcciones virtuales asignadas, tamaño, permisos, dispositivos, entre otros). Mientras que ```free``` nos muestra de manera general el uso de la memoria física y el espacio swap del **sistema** (Indicando total, libre, compartida, disponible, entre otros).
 
 6. Para usar pmap, usted tiene que conocer el identificador de proceso (PID) del proceso en el que usted está interesado. 
 Por lo tanto, primero ejecute ```ps auxw``` para ver una lista con todos lo procesos; entonces, 
