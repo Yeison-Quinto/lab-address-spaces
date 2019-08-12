@@ -5,6 +5,7 @@
 
 int main(int argc, char *argv[])
 {
+    printf("%d\n", getpid());
     int i = 0;
     int memoryToUse = atoi(argv[1]);
     int maxTime = argv[2] == NULL ? -1 : atoi(argv[2]);
@@ -21,8 +22,8 @@ int main(int argc, char *argv[])
         i = (i + 1) % memoryToUse;
         partialTime = clock();
         actualTime = (double)(partialTime - initialTime) / CLOCKS_PER_SEC;
-        printf("i: %d \t", i);
-        printf("Tiempo actual: %.8lf\n", actualTime);
+        // printf("i: %d \t", i);
+        // printf("Tiempo actual: %.8lf\n", actualTime);
     }
     free(p);
     return 0;

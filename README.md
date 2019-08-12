@@ -47,24 +47,40 @@ por lo menos, por una cierta cantidad de tiempo especificada también por línea
 pero en la misma máquina). ¿Cómo cambia el uso total de memoria cuando su programa está corriendo?,
 ¿Qué pasa cuando se finaliza el programa memory-user (comando kill)?, ¿coinciden los valores con lo que usted esperaba? 
 Intente esto para diferentes cantidades de uso de memoria. ¿Qué pasa cuando usted usa cantidades de memoria realmente grandes?
-    > ```FALTA``` Intenté con 5 10 20 200 200, y este fue el resultado
+    > Cuando el programa esta en curso, toma espacio de la memoria, se puede apreciar en el campo ```free```, y al terminar la ejecución se puede notar que se libera el espacio. Cuando se usa cantidades de memoria grandes, es donde se pueden apreciar estos cambios. Los valores coinciden con los esperados.
     ![Salida de la consola al ejecutar el comando: free -m](https://raw.githubusercontent.com/santiago-b9826/lab-address-spaces/master/assets/4.png)
 
 5. Ahora veremos una herramienta más conocida como ```pmap```. Invierta algo de tiempo para leer el manual de ```pmap``` 
 en detalle. ¿Cuál es la diferencia de ```pmap``` con ```free```?
-    > El comando ```pmap``` informa el mapa de memoria de un proceso o procesos.
-    La diferencia entre ```pmap``` y ```free``` es que ```pmap``` muestra el mapeo de un **proceso** (o varios procesos) en la memoria (indicando direcciones virtuales asignadas, tamaño, permisos, dispositivos, entre otros). Mientras que ```free``` nos muestra de manera general el uso de la memoria física y el espacio swap del **sistema** (Indicando total, libre, compartida, disponible, entre otros).
+    > La diferencia entre ```pmap``` y ```free``` es que ```pmap``` muestra el mapeo de un **proceso** (o varios procesos) en la memoria (indicando direcciones virtuales asignadas, tamaño, permisos, dispositivos, entre otros). Mientras que ```free``` nos muestra de manera general el uso de la memoria física y el espacio swap del **sistema** (Indicando total, libre, compartida, disponible, entre otros).
 
 6. Para usar pmap, usted tiene que conocer el identificador de proceso (PID) del proceso en el que usted está interesado. 
 Por lo tanto, primero ejecute ```ps auxw``` para ver una lista con todos lo procesos; entonces, 
 seleccione alguno de su interés tal como un browser. Usted también puede usar su programa memory-user en este caso 
 (de hecho, usted puede hacer que ese programa llame a ```getpid()``` para imprimir su PID para su conveniencia).
+    >![Salida de la consola al ejecutar el comando: ps auxw](https://raw.githubusercontent.com/santiago-b9826/lab-address-spaces/master/assets/6.1.png)
+    >
+    > En la consola izquierda se puede apreciar el id del proceso ```memory-user.c```, a la derecha se encuentra la salida del comando ```pmap``` con este id.
+    > ![Salida de la consola al ejecutar el comando: pmap](https://raw.githubusercontent.com/santiago-b9826/lab-address-spaces/master/assets/6.2.png)
 
 7. Ahora ejecute ```pmap``` en alguno de estos procesos usando varias flags (como ```-X```) para revelar más detalles 
 acerca del proceso. ¿Qué puede ver? ¿Cuántas entidades diferentes conforman un espacio de direcciones moderno, a diferencia de 
 nuestra simple concepción de code/stack/heap?
+    > Se puede ver de manera más ordenada el mapeo en memoria del proceso, indicando direcciones virtuales asignadas, offset, tamaño, permisos, dispositivos, espacio swap, mapeo al espacio de memoria.
+    > Las entidades que conforman el espacio de direccionamiento moderno son: ```code,  heap, stack, vvar, vdso(Virtual Dynamically linked Shared Objects) y vsyscall.``` 
+    > ![Salida de la consola al ejecutar el comando: pmap -X](https://raw.githubusercontent.com/santiago-b9826/lab-address-spaces/master/assets/7.png)
 
 8. Finalmente, ejecute ```pmap``` para su programa memory-user, con diferentes cantidades de memoria usada. ¿Qué puede ver en este caso?  ¿La salida de ```pmap``` es siempre la que usted espera?
+    > Ejecución del programa memory-user reservando 16MB 
+    >![Salida de la consola al ejecutar el comando: pmap](https://raw.githubusercontent.com/santiago-b9826/lab-address-spaces/master/assets/8.1.png)
+
+    > Ejecución del programa memory-user reservando 32MB
+    > ![Salida de la consola al ejecutar el comando: pmap](https://raw.githubusercontent.com/santiago-b9826/lab-address-spaces/master/assets/8.2.png)
+
+    > Ejecución del programa memory-user reservando 1024MB
+    > ![Salida de la consola al ejecutar el comando: pmap](https://raw.githubusercontent.com/santiago-b9826/lab-address-spaces/master/assets/8.3.png)
+
+    > La salida es diferente en cada uno ya que al referenciar en memoria se solicitan tamaños diferentes. Podemos observar las diferentes entidades que conforman el espacio de direccionamiento con sus respectivos tamaños. La salida es la esperada ya que aumenta el espacio reservado entre más espacio de memoria se solicita.
 
 ## Referencias ##
 
